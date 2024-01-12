@@ -92,53 +92,43 @@ calculatorField.addEventListener('click', (event) => {
             break;
         }
         case "operateButton": {
-            if (!firstNumber) {
+            if (!firstNumber && display) {
                 firstNumber = display;
                 display = "";
                 calculatorDisplay.innerHTML = display;
                 operator = pressOperatorButton(target);
-            } else if (tempResult) {
-                firstNumber = tempResult;
-                display = "";
-                calculatorDisplay.innerHTML = display;
-                operator = pressOperatorButton(target);
-            } else if (result) {
-                firstNumber = result;
-                display = "";
-                calculatorDisplay.innerHTML = display;
-                operator = pressOperatorButton(target);
-            }
-            else {
-                secondNumber = display;
-                operator = pressOperatorButton(target);
-                tempResult = operate(operator, firstNumber, secondNumber);
-                firstNumber = "";
-                secondNumber = "";
-                calculatorDisplay.innerHTML = tempResult;
-            }
-            break;
-        }
-        case "evaluateButton": {
-            if (firstNumber) {
+            } else if (firstNumber) {
                 secondNumber = display;
                 result = operate(operator, firstNumber, secondNumber);
-                calculatorDisplay.innerHTML = result;
-                firstNumber = "";
+                firstNumber = result;
                 secondNumber = "";
+                calculatorDisplay.innerHTML = firstNumber;
+                operator = pressOperatorButton(target);
             }
             break;
         }
-        case "clearButton": {
-            firstNumber = "";
+            
+        case "evaluateButton": {
+        if (firstNumber && operator) {
+            secondNumber = display;
+            result = operate(operator, firstNumber, secondNumber);
+            firstNumber = result;
+            calculatorDisplay.innerHTML = firstNumber;
             secondNumber = "";
-            operator = "";
-            display = "";
-            result = "";
-            tempResult = "";
-            calculatorDisplay.innerHTML = display;
-            break;
         }
+        break;
     }
+        case "clearButton": {
+        firstNumber = "";
+        secondNumber = "";
+        operator = "";
+        display = "";
+        result = "";
+        tempResult = "";
+        calculatorDisplay.innerHTML = display;
+        break;
+    }
+}
     console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, tempResult: ${tempResult}`);
 })
 
