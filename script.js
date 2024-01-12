@@ -73,6 +73,7 @@ function pressOperatorButton(target) {
 }
 
 let display = "";
+let tempResult;
 let calculatorField = document.querySelector(".calculator");
 let calculatorDisplay = document.querySelector("#display");
 
@@ -96,12 +97,24 @@ calculatorField.addEventListener('click', (event) => {
                 display = "";
                 calculatorDisplay.innerHTML = display;
                 operator = pressOperatorButton(target);
-            } else {
+            } else if (tempResult) {
+                firstNumber = tempResult;
+                display = "";
+                calculatorDisplay.innerHTML = display;
+                operator = pressOperatorButton(target);
+            } else if (result) {
+                firstNumber = result;
+                display = "";
+                calculatorDisplay.innerHTML = display;
+                operator = pressOperatorButton(target);
+            }
+            else {
                 secondNumber = display;
-                display = operate(operator, firstNumber, secondNumber);
+                operator = pressOperatorButton(target);
+                tempResult = operate(operator, firstNumber, secondNumber);
                 firstNumber = "";
                 secondNumber = "";
-                calculatorDisplay.innerHTML = display;
+                calculatorDisplay.innerHTML = tempResult;
             }
             break;
         }
@@ -120,10 +133,13 @@ calculatorField.addEventListener('click', (event) => {
             secondNumber = "";
             operator = "";
             display = "";
+            result = "";
+            tempResult = "";
             calculatorDisplay.innerHTML = display;
             break;
         }
     }
+    console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, tempResult: ${tempResult}`);
 })
 
 // if operateButton is pressed, and firstNumber and secondNumber have already been given, operate
@@ -133,3 +149,5 @@ calculatorField.addEventListener('click', (event) => {
 // if operateButton is pressed after a calculation, take result as firstNumber, take the operator, and prompt for secondNumber.
 
 // display += buttonPressed works correctly when display is a string, but not when display is an int.
+
+
