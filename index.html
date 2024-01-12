@@ -39,20 +39,48 @@
 </html>
 
 <!-- 
+SIMPLE CALCULATION
 - User enters a number.
-- User clicks an operator button. The number gets stored in firstNumber. The operator gets stored in operator.
+- User clicks an operator button. The number gets stored in firstNumber. 
+The operator gets stored in operator.
 - The display clears. The user enters another number.
-- User clicks the evaluate button. secondNumber is stored. Operate runs. The result is displayed on the display.
+- User clicks the evaluate button. secondNumber is stored. Operate runs. 
+The result is displayed on the display.
 - firstNumber and secondNumber are cleared.
 
-- If the user now clicks another operator button, the result is stored in firstNumber. The operator gets stored in operator.
+SIMPLE CALCULATION WITH PREVIOUS RESULT
+- If the user now clicks another operator button, the result is stored in 
+firstNumber. The operator gets stored in operator.
 - The display clears. The user enters another number.
-- User clicks the evaluate button. secondNumber is stored. Operate runs. The result is displayed on the display.
+- User clicks the evaluate button. secondNumber is stored. Operate runs. 
+The result is displayed on the display.
 
+MULTIPLE OPERATORS
 - User enters a number.
-- User clicks an operator button. The number gets stored in firstNumber. The operator gets stored in operator.
+- User clicks an operator button. The number gets stored in firstNumber. 
+The operator gets stored in operator.
 - The display clears. The user enters another number.
-- User clicks another operator button. secondNumber is stored. Operate runs. The result is displayed on the display.
+- User clicks another operator button. secondNumber is stored. 
+Operate runs. The result is displayed on the display.
 - firstNumber and secondNumber are cleared. Result is stored in firstNumber. 
+
+
+OPERATEBUTTON
+- How many situations are there in which a user can click the operate button?
+> no number has been entered (do nothing)
+> one number has been entered (store number, store operator, clear screen)
+> second number has been entered 
+(store second number, operate, clear firstNumber and secondNumber,
+store result in firstNumber, display firstNumber, store operator)
+> an evaluation has just been completed (store operator, clear screen)
+
+EVALUATEBUTTON
+- User clicks evaluateButton.
+> no number has been entered (do nothing)
+> one number has been entered (do nothing)
+> one number has been entered and an operator has been stored (do nothing)
+> two numbers and an operator have been stored 
+(operate, clear firstNumber and secondNumber, store result in firstNumber,
+display firstNumber)
 
  -->
