@@ -4,13 +4,19 @@ let operator = "+";
 let result = "";
 
 function operate(operator, a, b) {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
     switch (operator) {
         case '+': return add(a, b);
         case '-': return subtract(a, b);
         case '*': return multiply(a, b);
-        case '/': return divide(a, b);
+        case '/': {
+            if (b === 0) {
+                return "😂";
+            } else {
+                return divide(a, b);
+            }
+        }
         default: return "error";
     }
 }
@@ -75,14 +81,22 @@ function pressOperatorButton(target) {
 function evaluate() {
     secondNumber = display;
     result = operate(operator, firstNumber, secondNumber);
+    displayResult = Math.round(result * 100000) / 100000;
+    if (!result) {
+        calculatorDisplay.innerHTML = "error"
+        display = "";
+        firstNumber = "";
+        secondNumber = "";
+        operator = "";
+        return;
+    }
     firstNumber = result;
-    calculatorDisplay.innerHTML = firstNumber;
+    calculatorDisplay.innerHTML = displayResult;
     secondNumber = "";
     operator = "";
 }
 
 let display = "";
-let tempResult;
 let calculatorField = document.querySelector(".calculator");
 let calculatorDisplay = document.querySelector("#display");
 
@@ -107,43 +121,32 @@ calculatorField.addEventListener('click', (event) => {
                 firstNumber = display;
                 display = "";
             } else if (result) {
-                display = "";   
+                display = "";
             } else if (firstNumber && operator && display) {
                 evaluate();
                 operator = pressOperatorButton(target);
             } else if (firstNumber) {
                 display = "";
                 calculatorDisplay.innerHTML = display;
-            } 
+            }
             break;
         }
-            
+
         case "evaluateButton": {
-        if (firstNumber && operator) {
-            evaluate();
+            if (firstNumber && operator) {
+                evaluate();
+            }
+            break;
         }
-        break;
-    }
         case "clearButton": {
-        firstNumber = "";
-        secondNumber = "";
-        operator = "";
-        display = "";
-        result = "";
-        tempResult = "";
-        calculatorDisplay.innerHTML = display;
-        break;
+            firstNumber = "";
+            secondNumber = "";
+            operator = "";
+            display = "";
+            result = "";
+            calculatorDisplay.innerHTML = display;
+            break;
+        }
     }
-}
     console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, operator: ${operator}`);
 })
-
-// if operateButton is pressed, and firstNumber and secondNumber have already been given, operate
-// firstNumber and secondNumber first, and display the answer.
-
-// if numberButton is pressed, after a calculation, clear display and start new calculation.
-// if operateButton is pressed after a calculation, take result as firstNumber, take the operator, and prompt for secondNumber.
-
-// display += buttonPressed works correctly when display is a string, but not when display is an int.
-
-
