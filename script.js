@@ -115,19 +115,21 @@ calculatorField.addEventListener('click', (event) => {
             break;
         }
         case "operateButton": {
-            operator = pressOperatorButton(target);
             calculatorDisplay.innerHTML = "";
             if (!firstNumber && display) {
                 firstNumber = display;
                 display = "";
+                operator = pressOperatorButton(target);
             } else if (result) {
                 display = "";
+                operator = pressOperatorButton(target);
             } else if (firstNumber && operator && display) {
                 evaluate();
                 operator = pressOperatorButton(target);
             } else if (firstNumber) {
                 display = "";
                 calculatorDisplay.innerHTML = display;
+                operator = pressOperatorButton(target);
             }
             break;
         }
