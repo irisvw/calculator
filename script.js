@@ -10,13 +10,7 @@ function operate(operator, a, b) {
         case '+': return add(a, b);
         case '-': return subtract(a, b);
         case '*': return multiply(a, b);
-        case '/': {
-            if (b === 0) {
-                return "😂";
-            } else {
-                return divide(a, b);
-            }
-        }
+        case '/': return divide(a, b);
         default: return "error";
     }
 }
@@ -80,20 +74,28 @@ function pressOperatorButton(target) {
 
 function evaluate() {
     secondNumber = display;
-    result = operate(operator, firstNumber, secondNumber);
-    displayResult = Math.round(result * 100000) / 100000;
-    if (!result) {
-        calculatorDisplay.innerHTML = "error"
+    if (secondNumber === "0" && operator === "/") {
+        result = "";
+        displayResult = "😂";
         display = "";
         firstNumber = "";
-        secondNumber = "";
-        operator = "";
-        return;
+    } else {
+        result = operate(operator, firstNumber, secondNumber);
+        displayResult = Math.round(result * 100000) / 100000;
+        if (!result) {
+            calculatorDisplay.innerHTML = "error"
+            display = "";
+            firstNumber = "";
+            secondNumber = "";
+            operator = "";
+            return;
+        }
+        firstNumber = result;
     }
-    firstNumber = result;
     calculatorDisplay.innerHTML = displayResult;
     secondNumber = "";
     operator = "";
+
 }
 
 let display = "";
