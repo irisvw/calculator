@@ -82,7 +82,7 @@ function evaluate() {
     } else {
         result = operate(operator, firstNumber, secondNumber);
         displayResult = Math.round(result * 100000) / 100000;
-        if (!result) {
+        if (!result && result !== 0 && result !== "0") {
             calculatorDisplay.innerHTML = "error"
             display = "";
             firstNumber = "";
