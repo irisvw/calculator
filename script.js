@@ -72,6 +72,15 @@ function pressOperatorButton(target) {
     }
 }
 
+function evaluate() {
+    secondNumber = display;
+    result = operate(operator, firstNumber, secondNumber);
+    firstNumber = result;
+    calculatorDisplay.innerHTML = firstNumber;
+    secondNumber = "";
+    operator = "";
+}
+
 let display = "";
 let tempResult;
 let calculatorField = document.querySelector(".calculator");
@@ -92,29 +101,26 @@ calculatorField.addEventListener('click', (event) => {
             break;
         }
         case "operateButton": {
+            operator = pressOperatorButton(target);
+            calculatorDisplay.innerHTML = "";
             if (!firstNumber && display) {
                 firstNumber = display;
                 display = "";
-                calculatorDisplay.innerHTML = display;
+            } else if (result) {
+                display = "";   
+            } else if (firstNumber && operator && display) {
+                evaluate();
                 operator = pressOperatorButton(target);
             } else if (firstNumber) {
-                secondNumber = display;
-                result = operate(operator, firstNumber, secondNumber);
-                firstNumber = result;
-                secondNumber = "";
-                calculatorDisplay.innerHTML = firstNumber;
-                operator = pressOperatorButton(target);
-            }
+                display = "";
+                calculatorDisplay.innerHTML = display;
+            } 
             break;
         }
             
         case "evaluateButton": {
         if (firstNumber && operator) {
-            secondNumber = display;
-            result = operate(operator, firstNumber, secondNumber);
-            firstNumber = result;
-            calculatorDisplay.innerHTML = firstNumber;
-            secondNumber = "";
+            evaluate();
         }
         break;
     }
@@ -129,7 +135,7 @@ calculatorField.addEventListener('click', (event) => {
         break;
     }
 }
-    console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, tempResult: ${tempResult}`);
+    console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, operator: ${operator}`);
 })
 
 // if operateButton is pressed, and firstNumber and secondNumber have already been given, operate
