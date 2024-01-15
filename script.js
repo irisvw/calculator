@@ -76,7 +76,6 @@ function evaluate() {
     display = "";
     secondNumber = "";
     operator = "";
-
 }
 
 calculatorField.addEventListener('click', (event) => {
@@ -89,12 +88,13 @@ calculatorField.addEventListener('click', (event) => {
                 result = "";
             }
             if (display.length <= 10) {
-            buttonPressed = pressNumberButton(target);
-            display += buttonPressed;
-            calculatorDisplay.innerHTML = display;
+                buttonPressed = pressNumberButton(target);
+                display += buttonPressed;
+                calculatorDisplay.innerHTML = display;
             }
             break;
         }
+
         case "operateButton": {
             calculatorDisplay.innerHTML = "";
             if (!firstNumber && display) {
@@ -121,6 +121,7 @@ calculatorField.addEventListener('click', (event) => {
             }
             break;
         }
+
         case "clearButton": {
             firstNumber = "";
             secondNumber = "";
