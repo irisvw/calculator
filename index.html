@@ -5,17 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Calculator</title>
 </head>
 
 <body>
     <div class="wrapper">
-        <header>Calculator</header>
+        <header></header>
         <div class="calculator">
             <div id="display"></div>
             <div id="buttonContainer">
-                <button class="clearButton" id="buttonDelete">Backspace</button>
                 <button class="clearButton" id="clearButton">Clear</button>
+                <button class="clearButton" id="buttonDelete"><span class="material-symbols-outlined">
+                    backspace
+                    </span></button>
                 <button class="numberButton" id="button7">7</button>
                 <button class="numberButton" id="button8">8</button>
                 <button class="numberButton" id="button9">9</button>
@@ -32,7 +38,7 @@
                 <button class="numberButton" id="button0">0</button>
                 <button class="evaluateButton" id="button=">=</button>
                 <button class="operateButton" id="button+">+</button>
-            </div>   
+            </div>
         </div>
         <footer>Made with ♥ by Iris - for the Odin Project</footer>
     </div>

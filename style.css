@@ -6,6 +6,7 @@ body {
     font-family: sans-serif;
     height: 100%;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
 header,
@@ -32,10 +33,12 @@ footer {
     width: 90%;
     max-height: 700px;
     max-width: 500px;
-    border: 1px solid black;
+    /* border: 2px solid black; */
     border-radius: 10px;
     padding: 1rem;
     flex-grow: 1;
+    background: rgb(193, 218, 238);
+    background: linear-gradient(354deg, rgba(193, 218, 238, 1) 0%, rgba(238, 174, 202, 1) 100%);
 }
 
 #buttonContainer {
@@ -52,7 +55,7 @@ footer {
 .calculator button {
     box-sizing: border-box;
     border-radius: 10px;
-    font-size: 24px;
+    border-style: none;
     cursor: pointer;
     box-shadow: 0 5px #999;
 }
@@ -68,11 +71,14 @@ footer {
     box-sizing: border-box;
     font-size: 48px;
     text-align: right;
-    border: 1px solid black;
+    /* border: 2px solid black; */
     border-radius: 10px;
     padding: 1rem;
     margin-top: 1rem;
     height: 120px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    background-color: whitesmoke;
 }
 
 
@@ -83,17 +89,34 @@ footer {
     box-sizing: border-box;
     width: 24%;
     height: 100px;
+    font-size: 36px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
 }
 
 .operateButton,
 .evaluateButton {
     box-sizing: border-box;
-    background-color: lightblue;
+    background-color: rgb(147, 191, 228);
+    font-size: 36px;
 }
 
 .clearButton {
     box-sizing: border-box;
-    background-color: lightcoral;
+    background-color: rgb(233, 120, 158);
     height: 50px;
     width: 49%;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.material-symbols-outlined {
+    font-size: 42px !important;
+    vertical-align: middle;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 700,
+        'GRAD' 0,
+        'opsz' 48
 }
