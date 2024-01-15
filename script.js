@@ -66,6 +66,8 @@ function evaluate() {
             secondNumber = "";
             operator = "";
             return;
+        } else if (displayResult > 9999999999) {
+            displayResult = displayResult.toExponential(5);
         }
         firstNumber = result;
     }
@@ -86,9 +88,11 @@ calculatorField.addEventListener('click', (event) => {
                 calculatorDisplay.innerHTML = display;
                 result = "";
             }
+            if (display.length <= 10) {
             buttonPressed = pressNumberButton(target);
             display += buttonPressed;
             calculatorDisplay.innerHTML = display;
+            }
             break;
         }
         case "operateButton": {
