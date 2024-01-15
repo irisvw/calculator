@@ -1,7 +1,11 @@
 let firstNumber;
 let secondNumber;
-let operator = "+";
+let operator = "";
 let result = "";
+let display = "";
+let displayResult = "";
+let calculatorField = document.querySelector(".calculator");
+let calculatorDisplay = document.querySelector("#display");
 
 function operate(operator, a, b) {
     a = parseFloat(a);
@@ -15,60 +19,33 @@ function operate(operator, a, b) {
     }
 }
 
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-// display
+function add(a, b) { return a + b; }
+function subtract(a, b) { return a - b; }
+function multiply(a, b) { return a * b; }
+function divide(a, b) { return a / b; }
 
 function pressNumberButton(target) {
     switch (target.id) {
-        case 'button0':
-            return 0;
-        case 'button1':
-            return 1;
-        case 'button2':
-            return 2;
-        case 'button3':
-            return 3;
-        case 'button4':
-            return 4;
-        case 'button5':
-            return 5;
-        case 'button6':
-            return 6;
-        case 'button7':
-            return 7;
-        case 'button8':
-            return 8;
-        case 'button9':
-            return 9;
+        case 'button0': return 0;
+        case 'button1': return 1;
+        case 'button2': return 2;
+        case 'button3': return 3;
+        case 'button4': return 4;
+        case 'button5': return 5;
+        case 'button6': return 6;
+        case 'button7': return 7;
+        case 'button8': return 8;
+        case 'button9': return 9;
         default: return "";
     }
 }
 
 function pressOperatorButton(target) {
     switch (target.id) {
-        case 'button+':
-            return "+";
-        case 'button-':
-            return "-";
-        case 'button*':
-            return "*";
-        case 'button/':
-            return "/";
+        case 'button+': return "+";
+        case 'button-': return "-";
+        case 'button*': return "*";
+        case 'button/': return "/";
     }
 }
 
@@ -82,7 +59,7 @@ function evaluate() {
     } else {
         result = operate(operator, firstNumber, secondNumber);
         displayResult = Math.round(result * 100000) / 100000;
-        if (!result && result !== 0 && result !== "0") {
+        if (isNaN(result)) {
             calculatorDisplay.innerHTML = "error"
             display = "";
             firstNumber = "";
@@ -93,14 +70,12 @@ function evaluate() {
         firstNumber = result;
     }
     calculatorDisplay.innerHTML = displayResult;
+    displayResult = "";
+    display = "";
     secondNumber = "";
     operator = "";
 
 }
-
-let display = "";
-let calculatorField = document.querySelector(".calculator");
-let calculatorDisplay = document.querySelector("#display");
 
 calculatorField.addEventListener('click', (event) => {
     let target = event.target;
@@ -122,13 +97,13 @@ calculatorField.addEventListener('click', (event) => {
                 firstNumber = display;
                 display = "";
                 operator = pressOperatorButton(target);
-            } else if (result) {
+            } else if (typeof result === "number") {
                 display = "";
                 operator = pressOperatorButton(target);
             } else if (firstNumber && operator && display) {
                 evaluate();
                 operator = pressOperatorButton(target);
-            } else if (firstNumber) {
+            } else if (typeof firstNumber === "number") {
                 display = "";
                 calculatorDisplay.innerHTML = display;
                 operator = pressOperatorButton(target);
@@ -152,5 +127,5 @@ calculatorField.addEventListener('click', (event) => {
             break;
         }
     }
-    console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, operator: ${operator}`);
+    // console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, displayResult: ${displayResult}, operator: ${operator}`);
 })
