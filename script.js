@@ -95,6 +95,22 @@ calculatorField.addEventListener('click', (event) => {
             break;
         }
 
+        case "decimalButton": {
+            if (display.includes(".") === false) {
+                if (result) {
+                    display = "";
+                    calculatorDisplay.innerHTML = display;
+                    result = "";
+                }
+                if (display.length <= 10) {
+                    display += ".";
+                    calculatorDisplay.innerHTML = display;
+                }
+            }
+            calculatorDisplay.innerHTML = display;
+            break;
+        }
+
         case "operateButton": {
             calculatorDisplay.innerHTML = "";
             if (!firstNumber && display) {
@@ -123,14 +139,19 @@ calculatorField.addEventListener('click', (event) => {
         }
 
         case "clearButton": {
-            firstNumber = "";
-            secondNumber = "";
-            operator = "";
-            display = "";
-            result = "";
-            calculatorDisplay.innerHTML = display;
-            break;
+            if (target.id === "buttonDelete") {
+                display = display.substring(0, display.length - 1);
+                calculatorDisplay.innerHTML = display;
+            } else {
+                firstNumber = "";
+                secondNumber = "";
+                operator = "";
+                display = "";
+                result = "";
+                calculatorDisplay.innerHTML = display;
+                break;
+            }
         }
     }
-    // console.log(`firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, displayResult: ${displayResult}, operator: ${operator}`);
+    console.log(`display: ${display}, firstNumber: ${firstNumber}, secondNumber: ${secondNumber}, result: ${result}, displayResult: ${displayResult}, operator: ${operator}`);
 })
